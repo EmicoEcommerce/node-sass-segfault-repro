@@ -22,6 +22,11 @@ async function build() {
     let bundle = await rollup.rollup(config);
     await bundle.write(config.output);
   } catch (error) {
+    if (error.message === 'File to import not found or unreadable: ./breakpoints.scss.') {
+      console.log('The expected error occurred. Exiting now which may trigger the segmentation fault error in the still running process(es).');
+    } else {
+      console.error('An unexpected error occurred:', error);
+    }
     // This part is essential to the segmentation fault. Normally it would be an exit code of `1`, but I actually want
     // the build to pass if it fails without the signal SIGSEGV.
     process.exit(0);
@@ -32,4 +37,7 @@ async function build() {
 var SegfaultHandler = require("segfault-handler");
 SegfaultHandler.registerHandler("crash.log");
 
-build();
+// Run 10 simultaneous builds to increase the likelihood of a segmentation fault
+for (let i = 0; i < 10; i++) {
+  build();
+}
