@@ -1,7 +1,7 @@
 $base-color: #036;
 
 // this needs to run longer than the FaultyComponent.scss compiler, it seems to crash more regularly the longer it runs.
-@for $i from 1 through 100000 {
+@for $i from 1 through 1000000 {
   ul:nth-child(3n + #{$i}) {
     background-color: lighten($base-color, $i % 20 * 5%);
   }
