@@ -17,10 +17,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: build
+      # I can't reproduce it 100% of the time yet, but in my local (closed source) repository it occurs every single
+      # time. To increase the likelihood we build 5 times.
       run: |
         npm ci
         npm run build
-        npm test
+        npm run build
+        npm run build
+        npm run build
+        npm run build
       env:
         CI: true
