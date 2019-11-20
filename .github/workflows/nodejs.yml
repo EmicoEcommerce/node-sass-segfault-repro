@@ -15,7 +15,7 @@ jobs:
     env:
       MAX_SIMULTANEOUS_BUILDS: ${{matrix.max-simultaneous-builds}}
 
-    name: ${{matrix.max-simultaneous-builds}} simultaneous builds on node ${{matrix.node-version}}
+    name: Build ${{matrix.max-simultaneous-builds}}x on Node ${{matrix.node-version}}
 
     timeout-minutes: 15
 
