@@ -10,6 +10,12 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x, 13.x]
+        max-simultaneous-builds: [1, 2]
+
+    env:
+      MAX_SIMULTANEOUS_BUILDS: ${{matrix.max-simultaneous-builds}}
+
+    name: Build on node ${{matrix.node-version}} with ${{matrix.max-simultaneous-builds}} build(s) simultaneously
 
     steps:
     - uses: actions/checkout@v1
@@ -18,14 +24,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: build
-      # I can't reproduce it 100% of the time yet, but in my local (closed source) repository it occurs every single
-      # time. To increase the likelihood we build 5 times.
       run: |
         npm ci
-        npm run build
-        npm run build
-        npm run build
-        npm run build
         npm run build
       env:
         CI: true
