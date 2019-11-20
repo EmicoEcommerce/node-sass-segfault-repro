@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x, 13.x]
-        max-simultaneous-builds: [1, 2]
+        max-simultaneous-builds: [1, 2, 3]
 
     env:
       MAX_SIMULTANEOUS_BUILDS: ${{matrix.max-simultaneous-builds}}
