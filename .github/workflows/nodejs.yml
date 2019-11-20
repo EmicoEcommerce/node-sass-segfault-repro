@@ -17,6 +17,8 @@ jobs:
 
     name: Build on node ${{matrix.node-version}} with ${{matrix.max-simultaneous-builds}} build(s) simultaneously
 
+    timeout-minutes: 15
+
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
