@@ -14,7 +14,7 @@
     "build": "node build.js"
   },
   "devDependencies": {
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "rollup": "^1.27.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.3",
